@@ -30,7 +30,7 @@ public class Processor extends Component implements Overclockable {
     }
 
     void setTemp(int temp) {
-        if (tempCheck()) {
+        if (tempCheck(temp)) {
             this.temp = temp;
         } else {
             throw new TempIncorrectException();
@@ -80,7 +80,7 @@ public class Processor extends Component implements Overclockable {
     }
 
     @Override
-    public boolean tempCheck() {
+    public boolean tempCheck(int temp) {
         return temp < safeTempLimit;
     }
 }

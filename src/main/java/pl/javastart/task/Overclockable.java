@@ -3,5 +3,5 @@ package pl.javastart.task;
 public interface Overclockable {
     void overclock();
 
-    boolean tempCheck();
+    boolean tempCheck(int temp);
 }
