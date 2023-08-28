@@ -1,6 +1,7 @@
 package pl.javastart.task.components;
 
 import pl.javastart.task.Overclockable;
+import pl.javastart.task.exceptions.CriticalTempException;
 import pl.javastart.task.exceptions.TempIncorrectException;
 
 import java.util.Objects;
@@ -8,7 +9,9 @@ import java.util.Objects;
 public class Processor extends Component implements Overclockable {
     private int frequency;
     private int temp;
-    private int safeTempLimit;
+    private final int safeTempLimit;
+
+    private final int tempIncreaseStep = 10;
 
     public Processor(String name, String producer, String serial, int frequency, int temp, int safeTempLimit) {
         super(name, producer, serial);
@@ -53,11 +56,6 @@ public class Processor extends Component implements Overclockable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(frequency, temp, safeTempLimit);
-    }
-
-    @Override
     public String toString() {
         return "Processor{" +
                 "name=" + name +
@@ -71,11 +69,11 @@ public class Processor extends Component implements Overclockable {
 
     @Override
     public void overclock() {
-        if (temp < safeTempLimit) {
-            frequency += 100;
-            temp += 10;
+        if (temp <= safeTempLimit - 2 * tempIncreaseStep) {
+            frequency += frequencyIncreaseStep;
+            temp += tempIncreaseStep;
         } else {
-            System.out.println("Nie można już podkręcić procesora");
+            throw new CriticalTempException("Procesor");
         }
     }
 

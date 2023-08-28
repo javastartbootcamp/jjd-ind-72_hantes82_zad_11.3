@@ -1,6 +1,7 @@
 package pl.javastart.task.components;
 
 import pl.javastart.task.Overclockable;
+import pl.javastart.task.exceptions.CriticalTempException;
 import pl.javastart.task.exceptions.TempIncorrectException;
 import java.util.Objects;
 
@@ -9,6 +10,7 @@ public class Memory extends Component implements Overclockable {
     private int frequency;
     private int temp;
     private int safeTempLimit;
+    private final int tempIncreaseStep = 15;
 
     public Memory(String name, String producer, String serial, int memory, int frequency, int temp, int safeTempLimit) {
         super(name, producer, serial);
@@ -66,11 +68,6 @@ public class Memory extends Component implements Overclockable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(memory, frequency, temp, safeTempLimit);
-    }
-
-    @Override
     public String toString() {
         return "Memory{" +
                 "memory=" + memory +
@@ -85,11 +82,11 @@ public class Memory extends Component implements Overclockable {
 
     @Override
     public void overclock() {
-        if (temp < safeTempLimit) {
-            frequency += 100;
-            temp += 15;
+        if (temp <= safeTempLimit - 2 * tempIncreaseStep) {
+            frequency += frequencyIncreaseStep;
+            temp += tempIncreaseStep;
         } else {
-            System.out.println("Nie można już podkręcić pamięci RAM");
+            throw new CriticalTempException("Pamięć RAM");
         }
     }
 

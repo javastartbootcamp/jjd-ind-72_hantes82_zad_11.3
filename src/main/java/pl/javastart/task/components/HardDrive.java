@@ -30,11 +30,6 @@ public class HardDrive extends Component {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(capacity);
-    }
-
-    @Override
     public String toString() {
         return "HardDrive{" +
                 "capacity=" + capacity +

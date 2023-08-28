@@ -14,13 +14,15 @@ public class Main {
             HardDrive hardDrive1 = new HardDrive("Bolt", "WD", "FGDSDFD9384", 25.94);
             Computer computer1 = new Computer(processor1, memory1, hardDrive1);
             computer1.getProcessor().overclock();
-            computer1.getProcessor().overclock();
 //            computer1.getProcessor().overclock();
-            computer1.getMemory().overclock();
+//            computer1.getProcessor().overclock();
+//            computer1.getMemory().overclock();
 //            computer1.getMemory().overclock();
         } catch (StringsIncorrectException e) {
             System.err.println(e.getMessage());
         } catch (TempIncorrectException e) {
+            System.err.println(e.getMessage());
+        } catch (CriticalTempException e) {
             System.err.println(e.getMessage());
         }
     }

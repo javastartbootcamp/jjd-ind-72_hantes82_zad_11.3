@@ -6,6 +6,7 @@ abstract class Component {
     protected String name;
     protected String producer;
     protected String serial;
+    protected final int frequencyIncreaseStep = 100;
 
     public Component(String name, String producer, String serial) {
         setName(name);

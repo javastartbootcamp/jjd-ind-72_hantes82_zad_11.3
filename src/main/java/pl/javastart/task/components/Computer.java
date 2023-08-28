@@ -49,11 +49,6 @@ public class Computer {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(processor, memory, hardDrive);
-    }
-
-    @Override
     public String toString() {
         return "Computer{" +
                 "processor=" + processor +
