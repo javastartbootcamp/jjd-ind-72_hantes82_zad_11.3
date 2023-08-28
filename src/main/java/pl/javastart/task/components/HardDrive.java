@@ -1,7 +1,5 @@
 package pl.javastart.task.components;
 
-import java.util.Objects;
-
 public class HardDrive extends Component {
     private double capacity;
 

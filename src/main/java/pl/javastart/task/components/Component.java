@@ -1,12 +1,12 @@
 package pl.javastart.task.components;
 
-import pl.javastart.task.exceptions.StringsIncorrectException;
+import pl.javastart.task.exceptions.*;
 
 abstract class Component {
     protected String name;
     protected String producer;
     protected String serial;
-    protected final int frequencyIncreaseStep = 100;
+    protected static final int FREQUENCY_INCREASE_STEP = 100;
 
     public Component(String name, String producer, String serial) {
         setName(name);
@@ -19,7 +19,8 @@ abstract class Component {
     }
 
     void setName(String name) {
-        if (!stringValidationCheck(name)) {
+        int length = 4;
+        if (!checkStringLength(name, length)) {
             this.name = name;
         } else {
             throw new StringsIncorrectException("nazwa podzespołu");
@@ -31,7 +32,8 @@ abstract class Component {
     }
 
     void setProducer(String producer) {
-        if (!stringValidationCheck(producer)) {
+        int length = 4;
+        if (!checkStringLength(producer, length)) {
             this.producer = producer;
         } else {
             throw new StringsIncorrectException("producent");
@@ -43,14 +45,15 @@ abstract class Component {
     }
 
     void setSerial(String serial) {
-        if (!stringValidationCheck(serial)) {
+        int length = 4;
+        if (!checkStringLength(serial, length)) {
             this.serial = serial;
         } else {
             throw new StringsIncorrectException("numer seryjny");
         }
     }
 
-    boolean stringValidationCheck(String value) {
-        return value == null || value.length() < 2;
+    boolean checkStringLength(String value, int number) {
+        return value == null || value.length() < number;
     }
 }

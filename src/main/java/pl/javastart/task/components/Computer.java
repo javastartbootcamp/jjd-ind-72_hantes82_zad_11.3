@@ -1,7 +1,5 @@
 package pl.javastart.task.components;
 
-import java.util.Objects;
-
 public class Computer {
     private Processor processor;
     private Memory memory;
@@ -35,17 +33,6 @@ public class Computer {
 
     void setHarddrive(HardDrive hardDrive) {
         this.hardDrive = hardDrive;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Computer computer)) {
-            return false;
-        }
-        return Objects.equals(processor, computer.processor) && Objects.equals(memory, computer.memory) && Objects.equals(hardDrive, computer.hardDrive);
     }
 
     @Override

@@ -9,20 +9,15 @@ public class Main {
         try {
             Processor processor1 = new Processor("Pentium", "Intel", "INDSW734",
                     2000, 80, 100);
-            Memory memory1 = new Memory("DRAM", "Kingston", "ITKD83762", 256, 1500,
-                    20, 30);
+            Memory memory1 = new Memory("DRAM", "Kingston", "ITKD83762", 1200, 60, 70, 256);
             HardDrive hardDrive1 = new HardDrive("Bolt", "WD", "FGDSDFD9384", 25.94);
             Computer computer1 = new Computer(processor1, memory1, hardDrive1);
             computer1.getProcessor().overclock();
-//            computer1.getProcessor().overclock();
-//            computer1.getProcessor().overclock();
+            computer1.getProcessor().overclock();
+            computer1.getProcessor().overclock();
 //            computer1.getMemory().overclock();
 //            computer1.getMemory().overclock();
-        } catch (StringsIncorrectException e) {
-            System.err.println(e.getMessage());
-        } catch (TempIncorrectException e) {
-            System.err.println(e.getMessage());
-        } catch (CriticalTempException e) {
+        } catch (StringsIncorrectException | TempIncorrectException | CriticalTempException e) {
             System.err.println(e.getMessage());
         }
     }

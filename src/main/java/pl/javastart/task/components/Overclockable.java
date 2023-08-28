@@ -1,4 +1,4 @@
-package pl.javastart.task;
+package pl.javastart.task.components;
 
 public interface Overclockable {
     void overclock();
