@@ -1,13 +1,16 @@
 package pl.javastart.task.components;
 
-import pl.javastart.task.exceptions.*;
-
 public class Processor extends OverclockableComponent {
 
-    private final int tempIncreaseStep = 10;
+    private static final int TEMP_INCREASE_STEP = 10;
 
     public Processor(String name, String producer, String serial, int frequency, int temp, int safeTempLimit) {
         super(name, producer, serial, frequency, temp, safeTempLimit);
+    }
+
+    @Override
+    int getTempIncreaseStep() {
+        return TEMP_INCREASE_STEP;
     }
 
     @Override

@@ -1,13 +1,11 @@
 package pl.javastart.task.components;
 
-import pl.javastart.task.exceptions.CriticalTempException;
-import pl.javastart.task.exceptions.TempIncorrectException;
+import pl.javastart.task.exceptions.*;
 
 abstract class OverclockableComponent extends Component implements Overclockable {
     protected int frequency;
     protected int temp;
     protected int safeTempLimit;
-    protected int tempIncreaseStep;
 
     public OverclockableComponent(String name, String producer, String serial, int frequency, int temp, int safeTempLimit) {
         super(name, producer, serial);
@@ -28,16 +26,18 @@ abstract class OverclockableComponent extends Component implements Overclockable
         }
     }
 
+    abstract int getTempIncreaseStep();
+
     public void overclock() {
-        if (temp <= safeTempLimit - tempIncreaseStep) {
+        if (temp <= safeTempLimit - getTempIncreaseStep()) {
             frequency += FREQUENCY_INCREASE_STEP;
-            temp += tempIncreaseStep;
+            temp += getTempIncreaseStep();
         } else {
             throw new CriticalTempException("Pamięć RAM");
         }
     }
 
-    public boolean tempCheck(int temp) {
+    private boolean tempCheck(int temp) {
         return temp < safeTempLimit;
     }
 }

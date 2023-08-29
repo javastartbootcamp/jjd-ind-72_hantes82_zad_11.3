@@ -1,7 +1,7 @@
 package pl.javastart.task.components;
 
 public interface Overclockable {
-    void overclock();
+    int FREQUENCY_INCREASE_STEP = 100;
 
-    boolean tempCheck(int temp);
+    void overclock();
 }
